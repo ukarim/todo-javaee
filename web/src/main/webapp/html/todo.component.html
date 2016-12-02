@@ -1,0 +1,23 @@
+
+<form class="todo-form">
+    <input type="text" ng-model="todo.text">
+    <input type="submit" value="add" ng-click="$ctrl.createTodo(todo)">
+</form>
+
+<ul>
+    <li ng-repeat="todo in $ctrl.todos | filter:{completed: false}">
+        <div ng-click="$ctrl.changeState(todo)" class="todo-wrapper">
+            <p>{{ todo.creationDate | date:'MM/dd/yyyy h:mma'}}</p>
+            <p>{{ todo.text }}</p>
+        </div>
+    </li>
+</ul>
+
+<ul class="completed">
+    <li ng-repeat="todo in $ctrl.todos | filter:{completed: true}">
+        <div ng-click="$ctrl.changeState(todo)"  class="todo-wrapper">
+            <p>{{ todo.creationDate | date:'MM/dd/yyyy h:mma'}}</p>
+            <p>{{ todo.text }}</p>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,21 @@
+html {
+    padding: 0;
+    margin: 0;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    color: #565656;
+}
+.container {
+    width: 500px;
+    margin: 0 auto;
+}
+.todo-wrapper {
+    cursor: pointer;
+}
+.completed {
+    border-top: solid 3px #ddd;
+    list-style-image: url('../images/ch-icon.png');
+}
