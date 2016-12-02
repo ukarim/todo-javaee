@@ -52,13 +52,13 @@ public class TodoDaoImpl implements TodoDao {
     }
 
     public List<Todo> getCompletedTodos() {
-        TypedQuery<Todo> query = manager.createQuery("SELECT e FROM Todo e WHERE e.completed =: completed", Todo.class);
+        TypedQuery<Todo> query = manager.createQuery("SELECT e FROM Todo e WHERE e.completed =:completed", Todo.class);
         query.setParameter("completed", true);
         return query.getResultList();
     }
 
     public List<Todo> getUncompletedTodos() {
-        TypedQuery<Todo> query = manager.createQuery("SELECT e FROM Todo e WHERE e.completed =: completed", Todo.class);
+        TypedQuery<Todo> query = manager.createQuery("SELECT e FROM Todo e WHERE e.completed =:completed", Todo.class);
         query.setParameter("completed", false);
         return query.getResultList();
     }
