@@ -6,20 +6,18 @@ import kz.ukarim.projects.todojavaee.core.service.ServiceType;
 import kz.ukarim.projects.todojavaee.core.service.TodoService;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 
 @Path("/todo")
 public class TodoResource {
 
+    private static final String URL = "/todo/";
+
     @Context
-    private SecurityContext context;
+    private UriInfo uriInfo;
 
     @Inject
     @ServiceQualifier(type = ServiceType.TODO_SERVICE)
@@ -45,7 +43,22 @@ public class TodoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUncompletedTodos() {
-        todoService.getUncompletedTodos();
+        List<Todo> uncompletedTodos = todoService.getUncompletedTodos();
+        return Response.ok(uncompletedTodos).build();
+    }
+
+    @Path("/")
+    @POST
+    public Response createTodo(Todo todo) {
+        long id = todoService.create(todo);
+        URI uri = uriInfo.getBaseUriBuilder().path(URL).path(String.valueOf(id)).build();
+        return Response.created(uri).build();
+    }
+
+    @Path("/")
+    @PUT
+    public Response updateTodo(Todo todo) {
+        todoService.update(todo);
         return Response.ok().build();
     }
 
