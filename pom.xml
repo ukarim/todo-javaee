@@ -13,6 +13,7 @@
     <modules>
         <module>core</module>
         <module>web</module>
+        <module>ear</module>
     </modules>
 
     <properties>
