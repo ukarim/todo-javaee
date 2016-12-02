@@ -4,6 +4,7 @@ package kz.ukarim.projects.todojavaee.core.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,9 +18,6 @@ public class Todo {
 
     @Column(name = "text")
     private String text;
-
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
 
     @Column(name = "completed")
     private boolean completed;
